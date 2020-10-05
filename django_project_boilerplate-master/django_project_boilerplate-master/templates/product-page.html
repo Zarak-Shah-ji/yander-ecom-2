@@ -87,13 +87,9 @@
             <span>&#x20B9;{{ object.price }}</span>
           </div>
           {% else %}
-          <div class="product__details__price">
-            &#x20B9;{{ object.price }}
-          </div>
+          <div class="product__details__price">&#x20B9;{{ object.price }}</div>
           {% endif %}
-          <p>
-            {{ object.description }}
-          </p>
+          <p>{{ object.description }}</p>
           <div class="product__details__button">
             <a href="{{object.get_add_to_cart_url }}" class="cart-btn"
               ><span class="icon_bag_alt"></span> Add to cart</a
@@ -108,28 +104,20 @@
             <ul>
               <li>
                 <span>Category:</span>
-                <p>
-                  {{ object.get_category_display }}
-                </p>
+                <p>{{ object.get_category_display }}</p>
               </li>
 
               <li>
                 <span>Availability:</span>
-                <p>
-                  In Stock
-                </p>
+                <p>In Stock</p>
               </li>
               <li>
                 <span>Available Color:</span>
-                <p>
-                  As Depicted
-                </p>
+                <p>As Depicted</p>
               </li>
               <li>
                 <span>Available Size:</span>
-                <p>
-                  OneSize
-                </p>
+                <p>OneSize</p>
               </li>
               <li>
                 <span>Promotions:</span>
@@ -158,93 +146,178 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab"
-                >Write a Review</a
+                >Write a review</a
               >
             </li>
           </ul>
           <div class="tab-content">
             <div class="tab-pane active" id="tabs-1" role="tabpanel">
               <h6>Description</h6>
-              <p>
-                {{ object.description }}
-              </p>
+              <p>{{ object.description }}</p>
             </div>
             <!-----------------------------review display start--------------------------------->
-            
+
             <div class="tab-pane" id="tabs-2" role="tabpanel">
               {% for rs in reviews %}
-              <div class ="row">
+              <!-----------------------------card start--------------------------------->
+
+              <div class="card">
+                <div class="card-header">
+                  <h6 class="m-0" style="display: inline;"><i class="fa fa-user-o"></i> {{rs.user.username }}</h6>
+                  <h6 class="m-0 float-right" style="display: inline;"><i class="fa fa-clock-o"></i> {{rs.create_at }}</h6>
+             
+                </div>
+                <div class="card-body">
+                  <h6 class="card-title mb-2"> {{ rs.subject }}
+                    <div class="review-rating pull-right">
+                      <i class="{% if rs.rate < 1 %}fa fa-star-o{% else %}fa fa-star{% endif %}"
+                        ></i
+                      >
+                      <i class="{% if rs.rate < 2 %}fa fa-star-o{% else %}fa fa-star{% endif %}"
+                        ></i
+                      >
+                      <i class="{% if rs.rate < 3 %}fa fa-star-o{% else %}fa fa-star{% endif %}"
+                        ></i
+                      >
+                      <i class="{% if rs.rate < 4 %}fa fa-star-o{% else %}fa fa-star{% endif %}"
+                        ></i
+                      >
+                      <i class="{% if rs.rate < 5 %}fa fa-star-o{% else %}fa fa-star{% endif %}"
+                        ></i
+                      >
+                    </div></h6>
+                  <p class="card-text">{{ rs.comment }}</p>
+                  
+                </div>
+              </div>
+              <!-----------------------------card end--------------------------------->
+
+              <!-- <div class="row">
                 <div class="col-md-6">
                   <div class="product-reviews">
-                     
-           
-              
-              <div><a href="#"><i class="fa fa-user-o"></i>{{rs.user.username }}</a></div>
-              <br />
-              <div><a href="#"><i class="fa fa-user-o"></i>{{ rs.subject }}</a></div>
-              <div><a href="#"><i class="fa fa-clock-o"></i>{{rs.create_at }}</a></div>
-              
-             <div class="review-rating pull-right">
-                <i class="fa fa-star">{% if rs.rate < 5 %}-o empty{% endif %}</i>
-                <i class="fa fa-star">{% if rs.rate < 4 %}-o empty{% endif %}</i>
-                <i class="fa fa-star">{% if rs.rate < 3 %}-o empty{% endif %}</i>
-                <i class="fa fa-star">{% if rs.rate < 2 %}-o empty{% endif %}</i>
-                <i class="fa fa-star">{% if rs.rate < 1 %}-o empty{% endif %}</i>
-              </div>
-           <div>
-              <p>
-                {{ rs.comment }}
-              </p>
-             
-            </div>
-              </div>
-            </div>
-          </div>
-          {% endfor %}
-        </div>
-        
+                    <div>
+                      <i class="fa fa-user-o"></i> {{rs.user.username }}
+                    </div>
+                    <br />
+                    <div>
+                    {{ rs.subject }}
+                    </div>
+                    <div>
+                      <i class="fa fa-clock-o"></i> {{rs.create_at }}
+                    </div>
 
-            
-           
-           <!--------------------------review display end------------------------->
+                    <div class="review-rating pull-right">
+                      <i class="fa fa-star"
+                        >{% if rs.rate < 5 %}-o empty{% endif %}</i
+                      >
+                      <i class="fa fa-star"
+                        >{% if rs.rate < 4 %}-o empty{% endif %}</i
+                      >
+                      <i class="fa fa-star"
+                        >{% if rs.rate < 3 %}-o empty{% endif %}</i
+                      >
+                      <i class="fa fa-star"
+                        >{% if rs.rate < 2 %}-o empty{% endif %}</i
+                      >
+                      <i class="fa fa-star"
+                        >{% if rs.rate < 1 %}-o empty{% endif %}</i
+                      >
+                    </div>
+                    <div>
+                      <p>{{ rs.comment }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+              <br>
+              {% endfor %}
+            </div>
 
-           <!------------------------------write your review starts--------------------------------------------->
+            <!--------------------------review display end------------------------->
+
+            <!------------------------------write your review starts--------------------------------------------->
 
             <div class="tab-pane" id="tabs-3" role="tabpanel">
-              <h4 class="text-uppercase">Write Your Review</h4>
+              <h4 class="text-uppercase text-center">Write Your Review</h4>
               <br />
 
-              <form method="post" class="review-form" action ="/addcomment/{{  item.id }}" >
-                {% csrf_token %} 
-                
-                <div class="form-group">
-                  <input name="subject" class="input" type="text" placeholder ="Your subject" />
-                </div>
+              <form
+                method="post"
+                class="review-form card-body checkout__form"
+                action="/addcomment/{{  item.id }}"
+              >
+                {% csrf_token %}
 
                 <div class="form-group">
-                  <textarea name="comment" class="input" placeholder ="Your review"></textarea>
+                  <div class="rating">
+                    <h6 style="display: inline" class="">Your Rating:</h6>
+                    <span
+                      ><input
+                        type="radio"
+                        id="star5"
+                        name="rate"
+                        value="5" /><label for="star5"
+                        ><i class="fa fa-star"></i></label
+                    ></span>
+                    <span>
+                      <input
+                        type="radio"
+                        id="star4"
+                        name="rate"
+                        value="4" /><label for="star4"
+                        ><i class="fa fa-star"></i></label
+                    ></span>
+                    <span>
+                      <input
+                        type="radio"
+                        id="star3"
+                        name="rate"
+                        value="3" /><label for="star3"
+                        ><i class="fa fa-star"></i></label
+                    ></span>
+                    <span>
+                      <input
+                        type="radio"
+                        id="star2"
+                        name="rate"
+                        value="2" /><label for="star2"
+                        ><i class="fa fa-star"></i></label
+                    ></span>
+                    <span>
+                      <input
+                        type="radio"
+                        id="star1"
+                        name="rate"
+                        value="1"
+                      /><label for="star1"><i class="fa fa-star"></i></label>
+                    </span>
+                  </div>
+                  <br />
+                  <br />
                 </div>
 
-                <div class= "form-group">
-                    <div class="rating">
-                      <strong class ="text-uppercase">Your Rating: </strong>
-                      
-                        <span><input type="radio" id="star5" name ="rate" value ="5" /><label for="star5">☆</label></span>
-                        <span> <input type="radio" id="star4" name ="rate" value ="4" /><label for="star4">☆</label></span>
-                        <span> <input type="radio" id="star3" name ="rate" value ="3" /><label for="star3">☆</label></span>
-                        <span>  <input type="radio" id="star2" name ="rate" value ="2" /><label for="star2">☆</label></span>
-                      <span> <input type="radio" id="star1" name ="rate" value ="1" /><label for="star1">☆</label> </span>
-                      </div>
+                <div class="form-group checkout__form__input">
+                  <input
+                    name="subject"
+                    class="input"
+                    type="text"
+                    placeholder="Your subject"
+                  />
                 </div>
-                <br />
-                <br />
+
+                <div class="form-group checkout__form__input">
+                  <input
+                    name="comment"
+                    class="input"
+                    placeholder="Your review"
+                  ></input>
+                </div>
+
+            
                 {% if request.user.is_authenticated %}
-                <button class ="primary-btn">Submit</button>
-                {% else %}
-                    You  must be logged in to post a review
-                {% endif %}
-               </form>
-
+                <button class="btn btn-secondary btn-md waves-effect site-btn" type="submit">Submit</button>
+                {% else %} You must be logged in to post a review {% endif %}
+              </form>
             </div>
             <!-----------------------------write your review ends----------------------------------------->
           </div>
@@ -396,27 +469,22 @@
 </section>
 <!-- Product Details Section End -->
 
-{% endblock %}
-
-
-{% block extra_scripts %}
+{% endblock %} {% block extra_scripts %}
 <script>
-$(document).ready(function(){
+  $(document).ready(function () {
     // Check Radio-box
     $(".rating input:radio").attr("checked", false);
 
-    $('.rating input').click(function () {
-        $(".rating span").removeClass('checked');
-        $(this).parent().addClass('checked');
+    $(".rating input").click(function () {
+      $(".rating span").removeClass("checked");
+      $(this).parent().addClass("checked");
     });
 
-    $('input:radio').change(
-      function(){
-        var userRating = this.value;
-        alert(userRating);
-    }); 
-});
-  
+    $("input:radio").change(function () {
+      var userRating = this.value;
+      // alert(userRating);
+    });
+  });
 </script>
 
 {% endblock extra_scripts %}
