@@ -1,6 +1,8 @@
 import os
 from decouple import config
 
+import django_heroku
+
 ENVIRONMENT = os.getenv('ENVIRONMENT', 'development')
 
 DEBUG = False
@@ -173,3 +175,6 @@ EMAIL_USE_TLS =True
 
 ####################################################################################################################
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 10000
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())
