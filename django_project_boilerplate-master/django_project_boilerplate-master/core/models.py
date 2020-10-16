@@ -9,7 +9,6 @@ CATEGORY_CHOICES =(
     #'what goes in db' ,'what is displayed'
     ('S','Shawls'),
     ('G','Gowns'),
-    ('K','Kaftans'),
     ('SC','Scarfs'),
     ('D','Decor'),
     ('SF','Saffron'),
@@ -140,7 +139,7 @@ class Order(models.Model):
     #for associating a order with a user
     user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     #reference code  is used for reffering to a order when asked for a refund
-    ref_code = models.IntegerField(max_length=20,blank=True, null=True)
+    ref_code = models.CharField(max_length=20,blank=True, null=True)
    #items for adding orderitems into order
     items = models.ManyToManyField(OrderItem)
    #for storing the time the order was *created*
@@ -319,5 +318,3 @@ class Review(models.Model):
 #<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<self parameter >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #The self parameter is a reference to the current instance of the class, and is used to access variables that belongs to the class.
 # #It does not have to be named self , you can call it whatever you like, but it has to be the first parameter of any function in the class:
-
-
