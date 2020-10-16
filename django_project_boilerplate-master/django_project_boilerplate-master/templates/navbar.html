@@ -10,10 +10,10 @@
 <div class="offcanvas-menu-overlay"></div>
 <div class="offcanvas-menu-wrapper">
   <div class="offcanvas__close">+</div>
-  <ul class="offcanvas__widget" style="margin-right: 23px; text-align: left;">
-    <!-- <li><span class="icon_search search-switch    "></span></li> -->
+  <ul class="offcanvas__widget" style="margin-right: 0px; text-align: left;">
+    
     {% if request.user.is_authenticated %}
-    <div class="header__right__auth mr-4 pr-2">
+    <div class="header__right__auth mb-3">
       <a ><strong>{{ request.user }}</strong></a>
     </div>
     <li>
@@ -28,6 +28,7 @@
         <div class="tip"><span>{{request.user|cart_item_count}}</span></div>
       </a>
     </li> 
+    <li><span class="icon_search search-switch    "></span></li>
     
     {% endif %}
   </ul>
@@ -108,7 +109,7 @@
           {% if request.user.is_authenticated %}
          
           <ul class="header__right__widget">
-            <!-- <li><span class="icon_search search-switch"></span></li> -->
+            <li><span class="icon_search search-switch"></span></li>
             <li>
               <a href="{% url 'core:wishlist-summary' %}"
                 ><span class="icon_heart_alt"></span>
@@ -126,8 +127,8 @@
           <div class="header__right__auth pl-4 mr-0 ml-3">
             <a><strong>{{ request.user }}</strong></a>
           </div>
-          <div class="header__right__auth pl-4">
-            <a href="{% url 'account_logout' %}">Logout</a>
+          <div class="header__right__auth ">
+            <a href="{% url 'account_logout' %}">| Logout</a>
           </div>
           
           {% else %}

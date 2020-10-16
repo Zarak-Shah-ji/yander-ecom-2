@@ -128,6 +128,9 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 ACCOUNT_FORMS = {'signup': 'core.forms.MyCustomSignupForm'}
 
+ACCOUNT_EMAIL_REQUIRED =True
+ACCOUNT_EMAIL_VERIFICATION="mandatory"
+
 
 
 # DEBUG TOOLBAR SETTINGS
